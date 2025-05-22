@@ -23,10 +23,29 @@ int main()
 
 	bool done = false;
 
+	ALLEGRO_EVENT_QUEUE *eventQueue = NULL;
+
+	al_init_font_addon();
+	al_init_ttf_addon();
+
+	ALLEGRO_FONT* font24 = al_load_font("Resident Evil Large.ttf", 24, 0);
+	eventQueue = al_create_event_queue();
+
+	al_register_event_source(eventQueue, al_get_display_event_source(display));
+	al_clear_to_color(al_map_rgb(255, 255, 255));
+
+	if (!al_install_mouse()) {
+		al_show_native_message_box(NULL, "Error", "Mouse was not initialized", 0, 0, ALLEGRO_MESSAGEBOX_ERROR);
+		return -1;
+	}
+
+	al_register_event_source(eventQueue, al_get_mouse_event_source());
+
 	while (!done) {
 
 	}
 
 	al_destroy_display(display);
-
+	al_destroy_event_queue(eventQueue);
+	al_destroy_font(font24);
 }
