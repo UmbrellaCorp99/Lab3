@@ -59,14 +59,24 @@ int main()
 			}
 		}
 		if (color) {
-			if (xpos >= 0 && xpos <= (width/2) && ypos >= 0 && ypos <= height) {
-				al_clear_to_color(al_map_rgb(255, 0, 0));
-				al_draw_textf(font24, al_map_rgb(0, 0, 255), xpos, ypos, ALLEGRO_ALIGN_LEFT, "The mouse is located at = %i / %i", xpos, ypos);
+			if (xpos >= 0 && xpos <= (width/2) && ypos >= 0 && ypos <= height/2) {
+				al_clear_to_color(al_map_rgb(255, 255, 255));
+				al_draw_textf(font24, al_map_rgb(0,0,0), xpos, ypos, ALLEGRO_ALIGN_LEFT, "The mouse is located at = %i / %i", xpos, ypos);
 				al_flip_display();
 			}
-			else if (xpos >= (width / 2) && xpos <= width && ypos >= 0 && ypos <= height) {
+			else if (xpos >= (width / 2) && xpos <= width && ypos >= 0 && ypos <= height/2) {
+				al_clear_to_color(al_map_rgb(0, 0, 0));
+				al_draw_textf(font24, al_map_rgb(255, 255, 255), xpos, ypos, ALLEGRO_ALIGN_LEFT, "The mouse is located at = %i / %i", xpos, ypos);
+				al_flip_display();
+			}
+			else if (xpos >= 0 && xpos <= (width / 2) && ypos >= (height / 2) && ypos <= height) {
 				al_clear_to_color(al_map_rgb(0, 0, 255));
-				al_draw_textf(font24, al_map_rgb(255, 0, 0), xpos, ypos, ALLEGRO_ALIGN_LEFT, "The mouse is located at = %i / %i", xpos, ypos);
+				al_draw_textf(font24, al_map_rgb(255, 255, 0), xpos, ypos, ALLEGRO_ALIGN_LEFT, "The mouse is located at = %i / %i", xpos, ypos);
+				al_flip_display();
+			}
+			else if (xpos >= (width / 2) && xpos <= width && ypos >= (height / 2) && ypos <= height) {
+				al_clear_to_color(al_map_rgb(255, 255, 0));
+				al_draw_textf(font24, al_map_rgb(0, 0, 255), xpos, ypos, ALLEGRO_ALIGN_LEFT, "The mouse is located at = %i / %i", xpos, ypos);
 				al_flip_display();
 			}
 		}
