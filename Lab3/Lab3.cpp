@@ -22,6 +22,7 @@ int main()
 	}
 
 	bool done = false;
+	int xpos = width / 2, ypos = height / 2;
 
 	ALLEGRO_EVENT_QUEUE *eventQueue = NULL;
 
@@ -42,7 +43,18 @@ int main()
 	al_register_event_source(eventQueue, al_get_mouse_event_source());
 
 	while (!done) {
+		al_flip_display();
 
+		ALLEGRO_EVENT Event;
+		al_wait_for_event(eventQueue, &Event);
+		if (Event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
+			done = true;
+		}
+		else if (Event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
+			if (Event.mouse.button & 1) {
+				
+			}
+		}
 	}
 
 	al_destroy_display(display);
