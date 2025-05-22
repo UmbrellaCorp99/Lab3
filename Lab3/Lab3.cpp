@@ -21,7 +21,7 @@ int main()
 		return -1;
 	}
 
-	bool done = false;
+	bool done = false, color = false;
 	int xpos = width / 2, ypos = height / 2;
 
 	ALLEGRO_EVENT_QUEUE *eventQueue = NULL;
@@ -52,7 +52,17 @@ int main()
 		}
 		else if (Event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
 			if (Event.mouse.button & 1) {
-				
+				color = true;
+				xpos = Event.mouse.x;
+				ypos = Event.mouse.y;
+			}
+		}
+		if (color) {
+			if (xpos >= 0 && xpos <= (width/2) && ypos >= 0 && ypos <= height) {
+				al_clear_to_color(al_map_rgb(255, 0, 0));
+			}
+			else if (xpos >= (width / 2) && xpos <= width && ypos >= 0 && ypos <= height) {
+				al_clear_to_color(al_map_rgb(0, 0, 255));
 			}
 		}
 	}
